@@ -17,7 +17,10 @@ jobs:
         run: |
           rm -rf app settings.gradle.kts build.gradle.kts gradle.properties README_AR.md
           unzip -o VideoVoiceEditor_Project.zip -d .
-
+- name: Fix compile SDK
+  run: |
+    find . -type f -name "build.gradle.kts" -exec sed -i 's/compileSdk = 35/compileSdk = 36/g; s/compileSdk 35/compileSdk 36/g' {} \;
+    
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
